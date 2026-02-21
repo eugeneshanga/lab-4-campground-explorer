@@ -5,7 +5,6 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 // TODO: Create a data class for the Data Response
-// TODO: Create a data class for the Data Response
 @Keep
 @Serializable
 data class CampgroundResponse(
@@ -25,7 +24,10 @@ data class Campground(
     val latLong: String?,
     @SerialName("images")
     val images: List<CampgroundImage>?
-) : java.io.Serializable
+) : java.io.Serializable {
+    val imageURL: String
+        get() = images?.firstOrNull { !it.url.isNullOrEmpty() }?.url ?: ""
+    }
 
 // TODO: Create a data class for the Image Response
 @Keep
